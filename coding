@@ -1,0 +1,34 @@
+ 
+#define BLYNK_PRINT Serial 
+ 
+#include <ESP8266WiFi.h> 
+#include <BlynkSimpleEsp8266.h> 
+ 
+const char* ssid = "Redmi Note 11"; const char* password = "1234567890"; char auth[] = "3toEIfmuSiedGjWXe6rOVP_jHhv2FCPR"; 
+ 
+const int trigPin = D1; const int echoPin = D2; const int LED_red = D0; const int LED_green = D3; const int buzzerPin = D5; const int pumpPin = D6; 
+ 
+#define SOUND_VELOCITY 0.034 #define CM_TO_INCH 0.393701 
+long duration; float distanceCm; float distanceInch; 
+ 
+void setup() { 
+  Serial.begin(115200); 
+  Blynk.begin(auth, ssid, password); 
+   
+  pinMode(trigPin, OUTPUT);   pinMode(echoPin, INPUT);   pinMode(LED_red, OUTPUT);   pinMode(LED_green, OUTPUT);   pinMode(buzzerPin, OUTPUT);   pinMode(pumpPin, OUTPUT); 
+} 
+ 
+void loop() { 
+  Blynk.run(); 
+ 
+  digitalWrite(trigPin, LOW);   delayMicroseconds(2);   digitalWrite(trigPin, HIGH);   delayMicroseconds(10);   digitalWrite(trigPin, LOW); 
+   
+  duration = pulseIn(echoPin, HIGH);   distanceCm = duration * SOUND_VELOCITY / 2;   int value = distanceCm; 
+ 
+  Serial.print("Distance (cm): ");   Serial.println(distanceCm);   Blynk.virtualWrite(V1, value);   delay(1000); 
+ 
+  if (distanceCm <= 5) {     digitalWrite(LED_red, HIGH);     digitalWrite(LED_green, LOW);     tone(buzzerPin, 1000);     delay(500);     noTone(buzzerPin);     digitalWrite(pumpPin, HIGH); 
+    //Blynk.virtualWrite(V1, value);  // Control a virtual LED on the Blynk app (Virtual Pin V1)   } else {     digitalWrite(LED_red, LOW);     digitalWrite(LED_green, HIGH);     noTone(buzzerPin);     digitalWrite(pumpPin, LOW); 
+    //Blynk.virtualWrite(V1, value);  // Control a virtual LED on the Blynk app (Virtual Pin V1) 
+  } 
+} 
