@@ -1,4 +1,4 @@
-# IoT-Flood-Detection-using-ESP8266-
+# GROUP 7
 IoT Natual Disaster Management (flood) using ESP8266.
 The name of the project is Flood Detection.
 This project is made using the main component which is the ESP8266 NodeMCU.
@@ -10,3 +10,5 @@ Here are some pictures that were taken during the event:
 ![image](https://github.com/fsdkumk/IoT-Natural-Disaster-Management-using-ESP8266/assets/141599942/7dfb9ea1-d739-4a5b-a42f-741d2c82beb7)
 
 ![n](https://github.com/fsdkumk/IoT-Natural-Disaster-Management-using-ESP8266/assets/141599942/579d3d71-976c-40a7-ac59-98e1967ed0a5)
+
+![image](https://github.com/fsdkumk/IoT-Natural-Disaster-Management-using-ESP8266/assets/141599942/fd80ed57-70d8-4e3b-ad7c-d5e8ddf74d23)
